@@ -14,13 +14,12 @@ Source1:        kooha-vendored-sources.tar.xz
 
 BuildSystem: meson
 BuildRequires: appstream
-BuildRequires: cargo
-BuildRequires: rust
+BuildRequires: rust-packaging
 BuildRequires: x264
 BuildRequires: pkgconfig(gstreamer-1.0)
 BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
-BuildRequires: pkgconfig(gstreamer-plugins-ugly-1.0)
-BuildRequires: pkgconfig(gstreamer-plugins-bad-1.0)
+BuildRequires: gstreamer1.0-plugins-ugly
+BuildRequires: gstreamer1.0-plugins-bad
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: libadwaita-common
@@ -38,9 +37,16 @@ Requires: gstreamer1.0-pulse
 Kooha is a simple screen recorder with a minimal interface.
 
 %prep
-%autosetup -n %{name}-%{version} -p 1 -a 1
+%autosetup -n %{oname}-%{version} -p 1 -a 1
 %cargo_prep -v vendor
-cat >>.cargo/config.toml <<EOF
+# cat >>.cargo/config.toml <<EOF
+#
+# [source.crates-io]
+# replace-with = "vendored-sources"
+#
+# [source.vendored-sources]
+# directory = "vendor"
+# EOF
 
 %post
 %{_bindir}/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
