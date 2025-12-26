@@ -70,7 +70,6 @@ fi
 %files -f %{name}.lang 
 %{_bindir}/kooha
 %{_datadir}/kooha/
-%{_datadir}/locale/*/LC_MESSAGES/%{name}.mo
 %{_datadir}/glib-2.0/schemas/*
 %{_datadir}/applications/io.github.seadve.Kooha.desktop
 %{_datadir}/icons/hicolor/*/apps/io.github.seadve.*
