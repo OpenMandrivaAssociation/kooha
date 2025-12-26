@@ -35,6 +35,11 @@ Requires: gstreamer1.0-pulse
 %description
 Kooha is a simple screen recorder with a minimal interface.
 
+%prep
+%autosetup -n %{name}-%{version} -p 1 -a 1
+%cargo_prep -v vendor
+cat >>.cargo/config.toml <<EOF
+
 %post
 %{_bindir}/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 
