@@ -9,20 +9,23 @@ Summary:        Elegantly record your screen
 License:        GPLv3+
 URL:            https://github.com/SeaDve/%{oname}
 Source0:        https://github.com/SeaDve/Kooha/archive/v%{version}/%{name}-%{version}.tar.gz
+Source1:        kooha-vendored-sources.tar.xz
 
 
-BuildSystem:  meson
-BuildRequires:  appstream
-BuildRequires:  cargo
-BuildRequires:  rust
-BuildRequires:  x264
-BuildRequires:  pkgconfig(gstreamer-1.0)
-BuildRequires:  pkgconfig(gstreamer-plugins-base-1.0)
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gtk4)
-BuildRequires:  libadwaita-common
-BuildRequires:	pkgconfig(libadwaita-1)
-BuildRequires:  gettext
+BuildSystem: meson
+BuildRequires: appstream
+BuildRequires: cargo
+BuildRequires: rust
+BuildRequires: x264
+BuildRequires: pkgconfig(gstreamer-1.0)
+BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
+BuildRequires: pkgconfig(gstreamer-plugins-ugly-1.0)
+BuildRequires: pkgconfig(gstreamer-plugins-bad-1.0)
+BuildRequires: pkgconfig(glib-2.0)
+BuildRequires: pkgconfig(gtk4)
+BuildRequires: libadwaita-common
+BuildRequires: pkgconfig(libadwaita-1)
+BuildRequires: gettext
 
 Requires: pipewire
 Requires: gstreamer1.0-pipewire
@@ -33,6 +36,11 @@ Requires: gstreamer1.0-pulse
 
 %description
 Kooha is a simple screen recorder with a minimal interface.
+
+%prep
+%autosetup -n %{name}-%{version} -p 1 -a 1
+%cargo_prep -v vendor
+cat >>.cargo/config.toml <<EOF
 
 %post
 %{_bindir}/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
