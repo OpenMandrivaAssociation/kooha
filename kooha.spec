@@ -48,6 +48,10 @@ Kooha is a simple screen recorder with a minimal interface.
 # directory = "vendor"
 # EOF
 
+%install
+%meson_install
+%find_lang %{name}
+
 %post
 %{_bindir}/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 
@@ -63,7 +67,7 @@ fi
 %{_bindir}/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_bindir}/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
-%files 
+%files -f %{name}.lang 
 %{_bindir}/kooha
 %{_datadir}/kooha/
 %{_datadir}/locale/*/LC_MESSAGES/%{name}.mo
