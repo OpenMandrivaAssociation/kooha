@@ -32,17 +32,7 @@ Requires: gstreamer1.0-audiosrc
 Requires: gstreamer1.0-pulse
 
 %description
-Kooha is a simple screen recorder with a minimal interface. 
-You can simply click the record button without having to configure a bunch of settings.
-
-The main features of Kooha include the following:
-
-* Record microphone, desktop audio, or both at the same time
-* Support for WebM, MP4, GIF, and Matroska formats
-* Select a monitor or a portion of the screen to record
-* Configurable saving location, pointer visibility, frame rate, and delay
-* Experimental hardware-accelerated encoding
-
+Kooha is a simple screen recorder with a minimal interface.
 
 %post
 %{_bindir}/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
