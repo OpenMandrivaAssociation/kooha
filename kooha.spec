@@ -19,8 +19,8 @@ BuildRequires: rust
 BuildRequires: x264
 BuildRequires: pkgconfig(gstreamer-1.0)
 BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
-BuildRequires: pkgconfig(gstreamer-plugins-ugly-1.0)
-BuildRequires: pkgconfig(gstreamer-plugins-bad-1.0)
+BuildRequires: gstreamer1.0-plugins-ugly
+BuildRequires: gstreamer1.0-plugins-bad
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: libadwaita-common
